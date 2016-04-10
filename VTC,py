@@ -1,0 +1,44 @@
+import time
+import goslate
+import goslater
+import listas
+
+f = open("Prueba impresion de lista.csv","w")
+gs = goslate.Goslate()
+gr = goslater.Goslater()
+
+print('Códigos de idioma:\n')
+print('Afrikaans: af,    Albanes: sq,    Alemán: de,    Arabe: ar,    Armenio: hy,    Azerí : az,\n')
+print('Bengali: be,    Bielorruso: be,    Bosnio: bs,    Bulgaro: bg,    Canarés: kn,    Catalán: ca,\n')
+print('Checo: cs,    Chino: zh,    Coreano: ko,    Croata: hr,    Danes: da,    Eslovaco: sk,\n')
+print('Esloveno: sl,    Español: es,    Esperanto:eo,    Estonio: et,    Fines: fi,    Frances: fr,\n')
+print('Galés: cy,    Gallego: gl,    Georgiano: ka,    Griego: el,    Guyarati: gu,    Haitiano: ht,\n')
+print('Hausa: ha,    Hebreo: he,    Hindi: hi,    Hungaro: hu,    Igbo: ig,    Indonesio: id,\n')
+print('Ingles: en,    Irlandes: ga,    Islandes: is,    Italiano: it,    Japones: ja,    Javanés: jv,\n')
+print('Lao: lo,    Latin: la,    Leton: lv,    Lituano: lt,    Macedonio: mk,    Malayo: ms,\n')
+print('Maltés: mt,    Maori: mi,    Maratí: mr,    Mongol: mn,    Neerlandes: nl,    Nepali: ne,\n')
+print('Noruego: no,    Persa: fa,    Polaco: pl,    Portugues: pt,    Rumano: ro,    Ruso: ru,\n')
+print('Serbio: sr,    Somali: so,    Suajili: sw,    Sueco: sv,    Tagalo: tl,    Tailandes: th,\n')
+print('Tamil: ta,    Telugu: te,    Turco: tr,    Ucraniano: uk,    Urdu: ur,    Vascuence: eu,\n')
+print('Vietnamita: vi,    Yiddish: yi,    Yoruba: yo,    Zulu: zu,\n')
+language = input("Escoja el lenguaje que quiere aprender\n")
+
+for j in range(listas.listsnum):
+
+    words_list = listas.words_list[j+1]
+    words=words_list[:]
+    translated_words=words[:]
+    romanized_words=words[:]
+
+    for i in range(len(words)):
+
+        translated_words[i]=gs.translate(words[i],language)
+        time.sleep(0.1)
+        romanized_words[i]=gr.translate(words[i],language)
+        time.sleep(0.1)
+
+    for i in range(len(words)):
+
+        f.write(words[i] + ';' + translated_words[i]+ ';' + romanized_words[i]+'\n')
+
+f.close()
